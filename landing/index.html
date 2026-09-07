@@ -476,9 +476,15 @@
       ts: new Date().toISOString()
     };
 
-    // ── نقطة الربط: استبدل ما بعدها بنداء API أو خدمة النماذج لديك ──
-    // fetch('/api/leads', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(data)});
-    console.log('lead', data);
+    // ── الربط بنظام الأتمتة (automation/) ──
+    // بدّل ENDPOINT و SECRET بقيم خادمك، أو احذف الكتلة إن كنت تستخدم خدمة نماذج أخرى.
+    var ENDPOINT = 'https://your-domain.com/webhooks/lead';
+    var SECRET = 'REPLACE_WITH_WEBHOOK_SECRET';
+    fetch(ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'x-webhook-secret': SECRET },
+      body: JSON.stringify(data)
+    }).catch(function (err) { console.error('lead submit failed', err); });
 
     // تتبع التحويل (يعمل فقط بعد تركيب البكسل)
     if (window.fbq)  fbq('track', 'Lead');

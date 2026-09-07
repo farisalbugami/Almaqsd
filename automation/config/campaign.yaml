@@ -1,0 +1,189 @@
+# ═══════════════════════════════════════════════════════════
+#  إعدادات الحملة — المصدر الوحيد للحقيقة
+#  عدّل هذا الملف لتغيير سلوك النظام بالكامل دون لمس الكود.
+# ═══════════════════════════════════════════════════════════
+
+company:
+  name: "شركة المقصد لإدارة الأملاك والتسويق العقاري"
+  shortName: "المقصد"
+  city: "الرياض"
+  district: "حي القيروان"
+  phones: ["0581004000", "0582002000"]
+  email: "info@almaqsd.co"
+  whatsapp: "966581004000"
+  proofPoints:
+    - "أصول عقارية مُدارة تتجاوز قيمتها مليار ريال"
+    - "أكثر من 300 وحدة عقارية مُشغّلة"
+    - "فريق متكامل: إداري ومالي وقانوني وصيانة"
+    - "لوحة Dashboard خاصة بالمالك لمتابعة الأداء لحظيًا"
+    - "تسعة خدمات متكاملة تحت مظلة واحدة"
+
+# العرض المحوري الذي تدور حوله كل الحملات
+offers:
+  primary:
+    id: "property-audit"
+    name: "تقرير تقييم أداء عقارك — مجانًا"
+    promise: "الإشغال مقابل متوسط المنطقة، الإيجار الفعلي مقابل السوق، وتقدير العائد المفقود سنويًا"
+    slaHours: 48
+  secondary:
+    id: "feasibility"
+    name: "دراسة جدوى مبدئية لأرضك أو مشروعك — بدون التزام"
+    promise: "تحديد الاستخدام الأعلى عائدًا وتقدير مبدئي للجدوى"
+    slaHours: 96
+
+audiences:
+  - id: A1
+    adPriority: 2
+    name: "مالك مجمع تجاري أو مكتبي"
+    track: owners
+    pain: "إشغال ناقص، تحصيل متأخر، لا يعرف رقم عائده الفعلي"
+    message: "الرقم الذي تجهله هو الذي يكلفك"
+    channels: [instagram, snapchat, linkedin]
+  - id: A2
+    adPriority: 5
+    name: "مالك مجمع سكني أو وحدات متفرقة"
+    track: owners
+    pain: "تشتت العقود، الصيانة الطارئة، الخلافات مع المستأجرين"
+    message: "عقد واحد يريحك من مئة مكالمة"
+    channels: [instagram, tiktok, snapchat]
+  - id: A3
+    adPriority: 3
+    name: "مستثمر يبحث عن دخول السوق العقاري"
+    track: owners
+    pain: "لا يعرف ما يشتري ولا كيف يُشغّل"
+    message: "من دراسة الجدوى إلى أول إيجار محصّل"
+    channels: [linkedin, tiktok, instagram]
+  - id: A4
+    adPriority: 1
+    name: "صناديق ريت ومكاتب عائلية"
+    track: owners
+    pain: "يحتاج مُشغّلًا موثوقًا بتقارير تُقنع لجنة الاستثمار"
+    message: "مُشغّل بمعايير مؤسسية وتقارير جاهزة للجنة"
+    channels: [linkedin]
+  - id: B1
+    adPriority: 4
+    name: "مطوّر عقاري"
+    track: partners
+    pain: "أنجز المشروع ويحتاج شريك تشغيل وتسويق"
+    message: "أنت تبني، ونحن نضمن أن يُشغَّل ويُدرّ"
+    channels: [linkedin]
+  - id: B2
+    adPriority: 6
+    name: "مالك أرض في موقع حيوي"
+    track: partners
+    pain: "أرض معطّلة لا يريد بيعها"
+    message: "أرضك أصل نائم — نوقظه بشراكة"
+    channels: [linkedin, instagram, snapchat]
+  - id: B3
+    adPriority: 7
+    name: "مستثمر أو مشغّل فندقي"
+    track: partners
+    pain: "يبحث عن أصول أو إدارة تشغيل ضيافة"
+    message: "تشغيل فندقي بمعايير تجربة إقامة مميزة"
+    channels: [linkedin]
+
+channels:
+  linkedin:
+    enabled: true
+    weight: 0.40
+    postsPerWeek: 3
+    postDays: [0, 2, 4]        # الأحد، الثلاثاء، الخميس
+    postTime: "09:30"
+    maxChars: 2800
+  instagram:
+    enabled: true
+    weight: 0.25
+    postsPerWeek: 4
+    postDays: [1, 2, 3, 6]
+    postTime: "20:00"
+    maxChars: 2000
+  tiktok:
+    enabled: true
+    weight: 0.15
+    postsPerWeek: 3
+    postDays: [1, 3, 6]
+    postTime: "21:00"
+    maxChars: 900
+  snapchat:
+    enabled: true
+    weight: 0.10
+    postsPerWeek: 3
+    postDays: [2, 4, 6]
+    postTime: "19:00"
+    maxChars: 400
+
+budget:
+  currency: "ريال"
+  monthlyTotal: 9500
+  # الحد الأدنى لميزانية الحملة اليومية على كل منصة — دونه لا تخرج الحملة من مرحلة التعلّم
+  minDailyBudget:
+    linkedin: 40
+    meta: 20
+    tiktok: 20
+    snapchat: 20
+  allocation:
+    linkedin: 3000
+    meta: 2500
+    tiktok: 1200
+    snapchat: 1000
+    retargeting: 800
+    reserve: 1000
+
+# قواعد الإيقاف التلقائي — محرك التحسين ينفذها يوميًا
+optimizer:
+  # إعلان أنفق هذا المبلغ بلا عميل محتمل واحد يُوقف
+  spendNoLeadThreshold: 500
+  # إعلان تجاوزت تكلفة عميله المحتمل ضعف متوسط القناة يُوقف
+  cplMultiplierCap: 2.0
+  # لا يُقيّم إعلان قبل مرور هذه المدة
+  minAgeDays: 7
+  # أقصى زيادة في ميزانية إعلان خلال 3 أيام
+  maxBudgetIncreasePct: 20
+  budgetChangeCooldownDays: 3
+  # قناة بلا عميل محتمل مؤهل خلال 30 يومًا تُخفَّض ميزانيتها
+  channelReviewDays: 30
+  channelBudgetCutPct: 70
+
+leadScoring:
+  # تأهيل العميل المحتمل: 60 نقطة فأعلى = مؤهل
+  qualifiedThreshold: 60
+  hotThreshold: 80
+  units:
+    "أقل من 10": 10
+    "10 – 50": 30
+    "51 – 150": 45
+    "أكثر من 150": 50
+  propertyType:
+    "مجمع تجاري": 25
+    "مبنى مكتبي": 25
+    "مجمع سكني": 20
+    "وحدات متفرقة": 12
+    "عقار فندقي / ضيافة": 22
+    "أرض أو مشروع تحت التطوير": 18
+  sourceBonus:
+    linkedin: 20
+    landing: 15
+    instagram: 10
+    tiktok: 6
+    snapchat: 6
+    whatsapp: 12
+    referral: 25
+
+approvals:
+  # الموافقة البشرية مطلوبة قبل أي نشر
+  required: true
+  # موعد إرسال طلب الموافقة اليومي
+  digestTime: "08:00"
+  # يُلغى المنشور غير المعتمد بعد هذه المدة
+  expireHours: 36
+  # المحتوى يُولَّد قبل موعد نشره بهذا العدد من الأيام
+  generateLeadDays: 3
+
+reports:
+  dailyTime: "21:30"
+  weeklyDay: 0        # الأحد
+  weeklyTime: "08:30"
+
+sla:
+  # الحد الأقصى لزمن الرد الأول على عميل محتمل (دقائق)
+  firstResponseMinutes: 120
