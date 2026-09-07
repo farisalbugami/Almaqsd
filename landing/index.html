@@ -1,0 +1,495 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>المقصد | اطلب تقرير تقييم أداء عقارك مجانًا</title>
+<meta name="description" content="شركة المقصد لإدارة الأملاك والتسويق العقاري — أصول تتجاوز مليار ريال وأكثر من 300 وحدة مُشغّلة. اطلب تقرير تقييم أداء عقارك مجانًا.">
+<meta property="og:title" content="المقصد | إدارة أملاك وتسويق عقاري">
+<meta property="og:description" content="اعرف كم يستحق عقارك فعليًا — تقرير تقييم مجاني خلال 48 ساعة.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ar_SA">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0B0B0C;
+    --ink-2:#15161A;
+    --gold:#C9A227;
+    --gold-2:#E3C88C;
+    --gold-3:#F0E0BE;
+    --cream:#FAF4EA;
+    --cream-2:#F3E7D5;
+    --body:#3A3733;
+    --muted:#6E6A64;
+    --line:rgba(201,162,39,.28);
+    --radius:16px;
+    --max:1140px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;background:var(--cream);color:var(--body);
+    font-family:'Tajawal',system-ui,-apple-system,'Segoe UI',sans-serif;
+    font-size:17px;line-height:1.85;-webkit-font-smoothing:antialiased;
+  }
+  img{max-width:100%;display:block}
+  a{color:inherit}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
+  h1,h2,h3{color:var(--ink);line-height:1.35;margin:0 0 .6em;font-weight:800}
+  h1{font-size:clamp(30px,5vw,52px)}
+  h2{font-size:clamp(25px,3.6vw,38px)}
+  h3{font-size:20px;font-weight:700}
+  p{margin:0 0 1em}
+  .gold{color:var(--gold)}
+
+  /* ---------- buttons ---------- */
+  .btn{
+    display:inline-block;padding:15px 34px;border-radius:999px;
+    background:linear-gradient(135deg,var(--gold) 0%,var(--gold-2) 100%);
+    color:#141210;font-weight:800;text-decoration:none;font-size:17px;border:0;cursor:pointer;
+    box-shadow:0 10px 28px rgba(201,162,39,.32);transition:transform .18s ease,box-shadow .18s ease;
+    font-family:inherit;
+  }
+  .btn:hover{transform:translateY(-2px);box-shadow:0 14px 34px rgba(201,162,39,.42)}
+  .btn-ghost{
+    display:inline-block;padding:14px 32px;border-radius:999px;text-decoration:none;
+    border:1.5px solid var(--gold-2);color:var(--gold-3);font-weight:700;transition:background .2s ease;
+  }
+  .btn-ghost:hover{background:rgba(201,162,39,.12)}
+
+  /* ---------- nav ---------- */
+  .nav{position:sticky;top:0;z-index:50;background:rgba(11,11,12,.94);backdrop-filter:blur(10px);border-bottom:1px solid rgba(201,162,39,.2)}
+  .nav .wrap{display:flex;align-items:center;justify-content:space-between;height:74px;gap:20px}
+  .brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+  .brand-mark{width:40px;height:40px;flex:none}
+  .brand-txt{color:var(--cream);font-weight:800;font-size:19px;letter-spacing:.5px}
+  .brand-sub{display:block;color:var(--gold-2);font-size:11px;font-weight:400;letter-spacing:2px}
+  .nav-links{display:flex;gap:30px;align-items:center}
+  .nav-links a{color:#D9D4CC;text-decoration:none;font-size:15.5px;font-weight:500}
+  .nav-links a:hover{color:var(--gold-2)}
+  .nav-cta{padding:10px 22px;font-size:15px}
+  @media(max-width:900px){.nav-links{display:none}}
+
+  /* ---------- hero ---------- */
+  .hero{position:relative;background:var(--ink);color:#EFE9E0;overflow:hidden;padding:96px 0 88px}
+  .hero::before{
+    content:"";position:absolute;inset:0;
+    background:
+      radial-gradient(120% 80% at 15% 0%,rgba(201,162,39,.16) 0%,transparent 55%),
+      linear-gradient(200deg,#15161A 0%,#0B0B0C 70%);
+  }
+  .hero::after{
+    content:"";position:absolute;inset:0;opacity:.06;
+    background-image:
+      linear-gradient(45deg,var(--gold) 25%,transparent 25%,transparent 75%,var(--gold) 75%),
+      linear-gradient(45deg,var(--gold) 25%,transparent 25%,transparent 75%,var(--gold) 75%);
+    background-size:34px 34px;background-position:0 0,17px 17px;
+  }
+  .hero .wrap{position:relative;z-index:2}
+  .hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:center}
+  @media(max-width:920px){.hero-grid{grid-template-columns:1fr;gap:44px}}
+  .eyebrow{
+    display:inline-block;padding:7px 18px;border:1px solid var(--line);border-radius:999px;
+    color:var(--gold-2);font-size:13.5px;font-weight:600;letter-spacing:1px;margin-bottom:24px;
+  }
+  .hero h1{color:#fff;margin-bottom:20px}
+  .hero h1 span{
+    background:linear-gradient(120deg,var(--gold-2),var(--gold));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .hero p.lead{font-size:19px;color:#C6C0B7;max-width:52ch;margin-bottom:32px}
+  .hero-actions{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+  .hero-note{margin-top:20px;font-size:14.5px;color:#8C867E}
+
+  /* ---------- form card ---------- */
+  .form-card{
+    background:linear-gradient(180deg,#FFFDF9,#F7EEDF);
+    border:1px solid rgba(201,162,39,.35);border-radius:22px;padding:32px;
+    box-shadow:0 30px 70px rgba(0,0,0,.45);
+  }
+  .form-card h3{margin-bottom:6px;font-size:22px}
+  .form-card .sub{font-size:14.5px;color:var(--muted);margin-bottom:22px}
+  .field{margin-bottom:14px}
+  .field label{display:block;font-size:14px;font-weight:600;color:var(--ink);margin-bottom:6px}
+  .field input,.field select{
+    width:100%;padding:13px 15px;border:1px solid #DFD3BE;border-radius:11px;
+    font-family:inherit;font-size:16px;background:#fff;color:var(--ink);
+  }
+  .field input:focus,.field select:focus{outline:2px solid var(--gold);outline-offset:1px;border-color:transparent}
+  .form-card .btn{width:100%;margin-top:8px}
+  .privacy{font-size:12.5px;color:var(--muted);text-align:center;margin:14px 0 0}
+
+  /* ---------- stats ---------- */
+  .stats{background:var(--ink-2);border-top:1px solid rgba(201,162,39,.2);padding:44px 0}
+  .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;text-align:center}
+  @media(max-width:800px){.stats-grid{grid-template-columns:repeat(2,1fr);gap:32px}}
+  .stat .num{font-size:clamp(28px,3.6vw,40px);font-weight:800;color:var(--gold-2);line-height:1.2}
+  .stat .lbl{font-size:14.5px;color:#9E988F;margin-top:4px}
+
+  /* ---------- sections ---------- */
+  section{padding:88px 0}
+  .sec-head{text-align:center;max-width:660px;margin:0 auto 52px}
+  .sec-head p{color:var(--muted);font-size:17.5px;margin:0}
+  .kicker{color:var(--gold);font-weight:700;font-size:14px;letter-spacing:2.5px;display:block;margin-bottom:10px}
+
+  .signals{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px}
+  .signal{
+    background:#fff;border:1px solid #EDE1CD;border-radius:var(--radius);padding:26px;
+    border-top:3px solid var(--gold);
+  }
+  .signal .n{
+    width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold-2));
+    color:#141210;font-weight:800;display:grid;place-items:center;font-size:15px;margin-bottom:14px;
+  }
+  .signal p{margin:0;font-size:16px;color:var(--body)}
+
+  .alt{background:linear-gradient(180deg,#F5EADA,#FAF4EA)}
+  .services{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+  .svc{background:#fff;border:1px solid #EDE1CD;border-radius:var(--radius);padding:28px;transition:transform .2s ease,box-shadow .2s ease}
+  .svc:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(120,90,20,.12)}
+  .svc .ico{font-size:26px;margin-bottom:12px}
+  .svc h3{margin-bottom:8px}
+  .svc p{margin:0;font-size:15.5px;color:var(--muted)}
+
+  /* ---------- dashboard band ---------- */
+  .band{background:var(--ink);color:#E6E0D7;padding:88px 0;position:relative;overflow:hidden}
+  .band::before{content:"";position:absolute;inset:0;background:radial-gradient(90% 70% at 85% 10%,rgba(201,162,39,.14),transparent 60%)}
+  .band .wrap{position:relative;z-index:2}
+  .band-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+  @media(max-width:900px){.band-grid{grid-template-columns:1fr;gap:40px}}
+  .band h2{color:#fff}
+  .band p{color:#B7B1A8}
+  .checks{list-style:none;padding:0;margin:24px 0 0}
+  .checks li{padding:10px 0 10px 0;display:flex;gap:12px;align-items:flex-start;border-bottom:1px solid rgba(255,255,255,.07)}
+  .checks li::before{content:"✓";color:var(--gold-2);font-weight:800;flex:none}
+  .mock{
+    background:linear-gradient(160deg,#1C1D22,#101115);border:1px solid rgba(201,162,39,.28);
+    border-radius:18px;padding:22px;box-shadow:0 30px 60px rgba(0,0,0,.5);
+  }
+  .mock-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
+  .mock-top span{color:#8E8880;font-size:13px}
+  .mock-title{color:var(--gold-2);font-weight:700;font-size:15px}
+  .mock-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:16px}
+  .mock-kpi{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:14px;text-align:center}
+  .mock-kpi b{display:block;color:#fff;font-size:21px;font-weight:800}
+  .mock-kpi small{color:#8E8880;font-size:12px}
+  .bars{display:flex;align-items:flex-end;gap:9px;height:96px;padding-top:8px}
+  .bars i{flex:1;background:linear-gradient(180deg,var(--gold-2),rgba(201,162,39,.25));border-radius:5px 5px 0 0;display:block}
+
+  /* ---------- partners ---------- */
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+  @media(max-width:820px){.split{grid-template-columns:1fr}}
+  .pcard{background:#fff;border:1px solid #EDE1CD;border-right:4px solid var(--gold);border-radius:var(--radius);padding:32px}
+  .pcard h3{color:var(--gold);font-size:21px}
+  .pcard ul{margin:14px 0 0;padding-right:20px;color:var(--muted);font-size:15.5px}
+  .pcard li{margin-bottom:7px}
+
+  /* ---------- cta ---------- */
+  .cta{background:linear-gradient(135deg,#0B0B0C,#1D1A14);color:#fff;text-align:center;padding:88px 0}
+  .cta h2{color:#fff;margin-bottom:14px}
+  .cta p{color:#B7B1A8;max-width:56ch;margin:0 auto 30px;font-size:18px}
+  .cta-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+
+  /* ---------- footer ---------- */
+  footer{background:#08080A;color:#8E8880;padding:52px 0 34px;font-size:15px}
+  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:36px;margin-bottom:34px}
+  @media(max-width:800px){.foot-grid{grid-template-columns:1fr;gap:26px}}
+  footer h4{color:var(--gold-2);font-size:15px;margin:0 0 12px;font-weight:700}
+  footer a{text-decoration:none}
+  footer a:hover{color:var(--gold-2)}
+  .foot-bottom{border-top:1px solid rgba(255,255,255,.08);padding-top:22px;text-align:center;font-size:13.5px;color:#615C56}
+
+  .thanks{display:none;text-align:center;padding:26px 8px}
+  .thanks .tick{font-size:42px;color:var(--gold);line-height:1}
+  .thanks h3{margin:12px 0 6px}
+  .thanks p{color:var(--muted);font-size:15px;margin:0}
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<nav class="nav">
+  <div class="wrap">
+    <a class="brand" href="#">
+      <svg class="brand-mark" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+        <rect x="2" y="2" width="18" height="18" rx="3" stroke="#C9A227" stroke-width="2.5"/>
+        <rect x="28" y="2" width="18" height="18" rx="3" stroke="#C9A227" stroke-width="2.5"/>
+        <rect x="2" y="28" width="18" height="18" rx="3" stroke="#C9A227" stroke-width="2.5"/>
+        <rect x="28" y="28" width="18" height="18" rx="3" stroke="#C9A227" stroke-width="2.5"/>
+        <rect x="20" y="20" width="8" height="8" fill="#C9A227"/>
+      </svg>
+      <span class="brand-txt">المقصد<span class="brand-sub">AL-MAQSD</span></span>
+    </a>
+    <div class="nav-links">
+      <a href="#signals">هل عقارك بخير؟</a>
+      <a href="#services">خدماتنا</a>
+      <a href="#dashboard">لوحة المالك</a>
+      <a href="#partners">الشراكات</a>
+    </div>
+    <a class="btn nav-cta" href="#form">اطلب تقييمك المجاني</a>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">إدارة أملاك وتسويق عقاري — الرياض</span>
+      <h1>كم يخسر عقارك سنويًا<br><span>وأنت لا تراه في رقم؟</span></h1>
+      <p class="lead">
+        معظم الملاك يعرفون إيراد عقارهم. قليل منهم يعرف العائد الذي كان يمكن تحقيقه.
+        نُعدّ لك تقرير تقييم أداء عقارك خلال 48 ساعة — مجانًا وبدون أي التزام.
+      </p>
+      <div class="hero-actions">
+        <a class="btn" href="#form">اطلب التقرير المجاني</a>
+        <a class="btn-ghost" href="https://wa.me/966581004000" target="_blank" rel="noopener">تواصل عبر واتساب</a>
+      </div>
+      <p class="hero-note">التقرير يشمل: نسبة إشغالك مقابل متوسط المنطقة • إيجارك مقابل السوق • تقدير العائد المفقود سنويًا</p>
+    </div>
+
+    <!-- FORM -->
+    <div class="form-card" id="form">
+      <form id="leadForm" novalidate>
+        <h3>تقرير تقييم أداء عقارك</h3>
+        <p class="sub">أربع معلومات فقط — ويصلك التقرير خلال 48 ساعة.</p>
+
+        <div class="field">
+          <label for="name">الاسم</label>
+          <input id="name" name="name" type="text" required autocomplete="name" placeholder="الاسم الكامل">
+        </div>
+        <div class="field">
+          <label for="phone">رقم الجوال</label>
+          <input id="phone" name="phone" type="tel" required inputmode="tel" autocomplete="tel" placeholder="05XXXXXXXX" pattern="^0?5[0-9]{8}$">
+        </div>
+        <div class="field">
+          <label for="type">نوع العقار</label>
+          <select id="type" name="type" required>
+            <option value="">اختر النوع</option>
+            <option>مجمع تجاري</option>
+            <option>مبنى مكتبي</option>
+            <option>مجمع سكني</option>
+            <option>وحدات متفرقة</option>
+            <option>عقار فندقي / ضيافة</option>
+            <option>أرض أو مشروع تحت التطوير</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="units">عدد الوحدات</label>
+          <select id="units" name="units" required>
+            <option value="">اختر العدد</option>
+            <option>أقل من 10</option>
+            <option>10 – 50</option>
+            <option>51 – 150</option>
+            <option>أكثر من 150</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="city">المدينة / الحي</label>
+          <input id="city" name="city" type="text" required placeholder="مثال: الرياض — الملقا">
+        </div>
+
+        <button class="btn" type="submit">أرسل الطلب</button>
+        <p class="privacy">بياناتك تُستخدم لإعداد التقرير فقط، ولا تُشارك مع أي جهة.</p>
+      </form>
+
+      <div class="thanks" id="thanks">
+        <div class="tick">✓</div>
+        <h3>وصلنا طلبك</h3>
+        <p>سيتواصل معك فريق المقصد خلال ساعات العمل، ويصلك التقرير خلال 48 ساعة.</p>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ STATS ============ -->
+<div class="stats">
+  <div class="wrap stats-grid">
+    <div class="stat"><div class="num">+1 مليار</div><div class="lbl">ريال قيمة الأصول المُدارة</div></div>
+    <div class="stat"><div class="num">+300</div><div class="lbl">وحدة عقارية مُشغّلة</div></div>
+    <div class="stat"><div class="num">9</div><div class="lbl">خدمات متكاملة تحت مظلة واحدة</div></div>
+    <div class="stat"><div class="num">4</div><div class="lbl">فرق متخصصة: إداري ومالي وقانوني وتشغيل</div></div>
+  </div>
+</div>
+
+<!-- ============ SIGNALS ============ -->
+<section id="signals">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="kicker">قبل أن تكمل</span>
+      <h2>خمس علامات أن عقارك يُدار بأقل من طاقته</h2>
+      <p>علامة واحدة تستدعي المراجعة. ثلاث علامات تعني أنك تخسر فعليًا.</p>
+    </div>
+    <div class="signals">
+      <div class="signal"><div class="n">1</div><p>لا تعرف نسبة إشغالك اليوم بدقة.</p></div>
+      <div class="signal"><div class="n">2</div><p>التحصيل يتأخر أكثر من 15 يومًا بشكل متكرر.</p></div>
+      <div class="signal"><div class="n">3</div><p>آخر مراجعة لأسعار إيجاراتك كانت قبل أكثر من سنة.</p></div>
+      <div class="signal"><div class="n">4</div><p>صيانتك كلها طارئة، ولا يوجد جدول وقائي.</p></div>
+      <div class="signal"><div class="n">5</div><p>لا يصلك تقرير شهري يوضح المصاريف بندًا بندًا.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SERVICES ============ -->
+<section class="alt" id="services">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="kicker">ما نقدّمه</span>
+      <h2>عقارك يحتاج تسع جهات… أو جهة واحدة</h2>
+      <p>من التطوير إلى التشغيل إلى التقرير الذي يصلك في موعده.</p>
+    </div>
+    <div class="services">
+      <div class="svc"><div class="ico">🏗️</div><h3>التطوير العقاري</h3><p>تنفيذ مشاريع متنوعة تشمل منتجعات سياحية في الرياض وشمالها، بإشراف كامل من التخطيط حتى التسليم.</p></div>
+      <div class="svc"><div class="ico">🏨</div><h3>التشغيل الفندقي والاستثمار</h3><p>إدارة وتشغيل الفنادق والإشراف على العمليات اليومية، مع فرص استثمار مباشر وغير مباشر.</p></div>
+      <div class="svc"><div class="ico">🔑</div><h3>تشغيل وإدارة الأملاك</h3><p>تشغيل وتأجير العقارات السكنية والتجارية والمكتبية بأنظمة تشغيل مرنة ترفع الإشغال وتخفض التكاليف.</p></div>
+      <div class="svc"><div class="ico">📣</div><h3>التسويق واستقطاب المستأجرين</h3><p>حملات تسويقية متكاملة رقمية وتقليدية، وتصوير احترافي يُبرز العقار ويسرّع التأجير.</p></div>
+      <div class="svc"><div class="ico">📊</div><h3>الإدارة المالية والتحصيل</h3><p>إدارة الحسابات وضمان التحصيل، وتقارير تفصيلية للإيرادات والمصاريف تدعم التخطيط المالي.</p></div>
+      <div class="svc"><div class="ico">⚖️</div><h3>الإدارة القانونية</h3><p>صياغة ومراجعة العقود، تمثيل قانوني ومتابعة النزاعات، وامتثال كامل للتشريعات العقارية.</p></div>
+      <div class="svc"><div class="ico">🛠️</div><h3>إدارة الصيانة</h3><p>صيانة وقائية وتصحيحية مجدولة بفريق فني كفؤ، لاستدامة الأصل والحفاظ على قيمته.</p></div>
+      <div class="svc"><div class="ico">📈</div><h3>التحليل والاستشارات</h3><p>دراسات جدوى، تقييم أداء الأصول، وتحليل المخاطر مع توصيات استراتيجية لتعظيم العوائد.</p></div>
+      <div class="svc"><div class="ico">💡</div><h3>الحلول التقنية</h3><p>أنظمة إلكترونية لمتابعة الأداء لحظيًا، وتقارير فورية تساعد على اتخاذ القرار الصحيح.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DASHBOARD ============ -->
+<section class="band" id="dashboard">
+  <div class="wrap band-grid">
+    <div>
+      <span class="kicker">لوحة المالك</span>
+      <h2>المالك يجب أن يرى عقاره، لا أن يُخبَر عنه</h2>
+      <p>الشفافية ليست تقريرًا شهريًا يصل متأخرًا — هي وصول دائم. لكل مالك لدينا صفحة Dashboard خاصة يتابع منها أداء أصوله ماليًا وفنيًا لحظة بلحظة.</p>
+      <ul class="checks">
+        <li>نسبة الإشغال والوحدات الشاغرة لحظيًا</li>
+        <li>الإيرادات والمصاريف بندًا بندًا</li>
+        <li>حالة العقود ومواعيد التجديد والتحصيل</li>
+        <li>بلاغات الصيانة ومراحل معالجتها</li>
+        <li>مقارنة الأداء بالفترات السابقة</li>
+      </ul>
+    </div>
+    <div class="mock" aria-hidden="true">
+      <div class="mock-top">
+        <span class="mock-title">لوحة أداء الأصل</span>
+        <span>آخر تحديث: الآن</span>
+      </div>
+      <div class="mock-row">
+        <div class="mock-kpi"><b>94%</b><small>الإشغال</small></div>
+        <div class="mock-kpi"><b>98%</b><small>التحصيل</small></div>
+        <div class="mock-kpi"><b>7</b><small>بلاغات مفتوحة</small></div>
+      </div>
+      <div class="bars">
+        <i style="height:42%"></i><i style="height:58%"></i><i style="height:50%"></i>
+        <i style="height:71%"></i><i style="height:64%"></i><i style="height:83%"></i>
+        <i style="height:76%"></i><i style="height:92%"></i>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PARTNERS ============ -->
+<section id="partners">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="kicker">شراكات التطوير</span>
+      <h2>أنت تبني — ونحن نضمن أن يُشغَّل ويُدرّ</h2>
+      <p>كثير من المشاريع الجيدة تتعثر بعد التسليم، لا بسبب البناء بل بسبب غياب مُشغّل.</p>
+    </div>
+    <div class="split">
+      <div class="pcard">
+        <h3>للمطوّر العقاري</h3>
+        <p>شريك تشغيل وتسويق يبدأ عمله قبل التسليم لا بعده.</p>
+        <ul>
+          <li>استقطاب مستأجرين قبل الافتتاح</li>
+          <li>تشغيل يومي بمعايير مضبوطة</li>
+          <li>تشغيل فندقي للمشاريع السياحية</li>
+          <li>تقارير أداء جاهزة للمستثمرين</li>
+        </ul>
+      </div>
+      <div class="pcard">
+        <h3>لمالك الأرض أو المشروع</h3>
+        <p>أرضك أصل نائم — نوقظه بشراكة تطوير وتشغيل.</p>
+        <ul>
+          <li>دراسة جدوى مبدئية للموقع بدون التزام</li>
+          <li>تحديد الاستخدام الأعلى عائدًا</li>
+          <li>إدارة التطوير من التخطيط حتى التشغيل</li>
+          <li>توزيع عوائد متفق عليه ومكتوب</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA ============ -->
+<section class="cta">
+  <div class="wrap">
+    <h2>في المقصد لا نقدّم خدمات إدارة أملاك فقط —<br>بل نخلق فرصًا استثمارية مستدامة</h2>
+    <p>شراكتك معنا تعني: تشغيلًا فعّالًا • عوائد محسّنة • تسويقًا ذكيًا يعزز قيمة أصولك العقارية.</p>
+    <div class="cta-row">
+      <a class="btn" href="#form">اطلب تقييم عقارك مجانًا</a>
+      <a class="btn-ghost" href="tel:0581004000">اتصل: 0581004000</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <h4>شركة المقصد لإدارة الأملاك والتسويق العقاري</h4>
+        <p>أن نكون الخيار الأول في إدارة الأملاك والتسويق العقاري بالمملكة، عبر تقديم حلول مبتكرة تلبي تطلعات السوق وتحقق أقصى العوائد الاستثمارية لعملائنا.</p>
+      </div>
+      <div>
+        <h4>تواصل معنا</h4>
+        <p>
+          <a href="tel:0581004000">0581004000</a><br>
+          <a href="tel:0582002000">0582002000</a><br>
+          <a href="mailto:info@almaqsd.co">info@almaqsd.co</a>
+        </p>
+      </div>
+      <div>
+        <h4>العنوان</h4>
+        <p>المملكة العربية السعودية<br>الرياض — حي القيروان<br>10106 06 474 – 7009424073</p>
+      </div>
+    </div>
+    <div class="foot-bottom">© 2026 شركة المقصد لإدارة الأملاك والتسويق العقاري — جميع الحقوق محفوظة.</div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var form = document.getElementById('leadForm');
+  var thanks = document.getElementById('thanks');
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    if(!form.reportValidity()) return;
+
+    var data = {
+      name:  form.name.value.trim(),
+      phone: form.phone.value.trim(),
+      type:  form.type.value,
+      units: form.units.value,
+      city:  form.city.value.trim(),
+      source: document.referrer || 'direct',
+      ts: new Date().toISOString()
+    };
+
+    // ── نقطة الربط: استبدل ما بعدها بنداء API أو خدمة النماذج لديك ──
+    // fetch('/api/leads', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(data)});
+    console.log('lead', data);
+
+    // تتبع التحويل (يعمل فقط بعد تركيب البكسل)
+    if (window.fbq)  fbq('track', 'Lead');
+    if (window.lintrk) lintrk('track', { conversion_id: 'REPLACE_ME' });
+    if (window.snaptr) snaptr('track', 'SIGN_UP');
+    if (window.ttq)  ttq.track('SubmitForm');
+
+    form.style.display = 'none';
+    thanks.style.display = 'block';
+  });
+})();
+</script>
+</body>
+</html>
