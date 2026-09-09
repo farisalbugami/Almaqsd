@@ -1,0 +1,310 @@
+// منظومة المقصد المتكاملة — مخطط قاعدة البيانات
+// للتحويل إلى PostgreSQL: غيّر provider إلى "postgresql" وحدّث DATABASE_URL
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// ═══════════════ النواة والصلاحيات ═══════════════
+
+model User {
+  id           String    @id @default(cuid())
+  name         String
+  email        String    @unique
+  passwordHash String
+  role         String // ADMIN | FINANCE | OPERATIONS | LEGAL | MAINTENANCE | OWNER
+  phone        String?
+  active       Boolean   @default(true)
+  ownerId      String? // إن كان المستخدم مالكاً يرى بوابته فقط
+  owner        Owner?    @relation(fields: [ownerId], references: [id], onDelete: SetNull)
+  lastLoginAt  DateTime?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  auditLogs AuditLog[]
+
+  @@index([role])
+}
+
+model AuditLog {
+  id        String   @id @default(cuid())
+  userId    String?
+  user      User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+  action    String // CREATE | UPDATE | DELETE | LOGIN | LOGOUT
+  entity    String
+  entityId  String?
+  summary   String
+  createdAt DateTime @default(now())
+
+  @@index([entity, entityId])
+  @@index([createdAt])
+}
+
+// ═══════════════ المُلاك وعقود الإدارة ═══════════════
+
+model Owner {
+  id        String   @id @default(cuid())
+  code      String   @unique
+  name      String
+  type      String // INDIVIDUAL | COMPANY | REIT
+  idNumber  String? // هوية / سجل تجاري
+  phone     String?
+  email     String?
+  iban      String?
+  bankName  String?
+  notes     String?
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  properties Property[]
+  contracts  ManagementContract[]
+  payouts    Payout[]
+  users      User[]
+
+  @@index([type])
+}
+
+model ManagementContract {
+  id             String   @id @default(cuid())
+  number         String   @unique
+  ownerId        String
+  owner          Owner    @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+  startDate      DateTime
+  endDate        DateTime
+  commissionType String // PERCENT_COLLECTED | PERCENT_CONTRACTED | FIXED_MONTHLY
+  commissionRate Float // نسبة مئوية أو مبلغ ثابت
+  spendLimit     Float    @default(0) // سقف الصرف دون الرجوع للمالك
+  scope          String? // نطاق الخدمة
+  status         String   @default("ACTIVE") // DRAFT | ACTIVE | EXPIRED | TERMINATED
+  documentUrl    String?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  @@index([ownerId])
+  @@index([status])
+}
+
+// ═══════════════ الأصول العقارية ═══════════════
+
+model Property {
+  id          String    @id @default(cuid())
+  code        String    @unique
+  name        String
+  ownerId     String
+  owner       Owner     @relation(fields: [ownerId], references: [id], onDelete: Restrict)
+  type        String // COMMERCIAL | OFFICE | RESIDENTIAL | HOSPITALITY | LAND
+  city        String
+  district    String?
+  address     String?
+  deedNumber  String?
+  landArea    Float?
+  builtArea   Float?
+  floors      Int?
+  buildYear   Int?
+  marketValue Float?
+  valuedAt    DateTime?
+  latitude    Float?
+  longitude   Float?
+  status      String    @default("ACTIVE") // ACTIVE | UNDER_MAINTENANCE | INACTIVE
+  notes       String?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  units     Unit[]
+  expenses  Expense[]
+  documents Document[]
+
+  @@index([ownerId])
+  @@index([type])
+}
+
+model Unit {
+  id         String   @id @default(cuid())
+  code       String
+  propertyId String
+  property   Property @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+  type       String // APARTMENT | OFFICE | SHOP | SHOWROOM | WAREHOUSE | CHALET | VILLA
+  floor      String?
+  area       Float?
+  rooms      Int?
+  baths      Int?
+  marketRent Float? // الإيجار السنوي المستهدف
+  status     String   @default("VACANT") // VACANT | LEASED | RESERVED | MAINTENANCE
+  meterElec  String?
+  meterWater String?
+  notes      String?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  leases   Lease[]
+  expenses Expense[]
+
+  @@unique([propertyId, code])
+  @@index([status])
+}
+
+// ═══════════════ المستأجرون والعقود ═══════════════
+
+model Tenant {
+  id        String   @id @default(cuid())
+  code      String   @unique
+  name      String
+  type      String // INDIVIDUAL | COMPANY
+  idNumber  String?
+  phone     String?
+  email     String?
+  notes     String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  leases Lease[]
+
+  @@index([type])
+}
+
+model Lease {
+  id              String    @id @default(cuid())
+  number          String    @unique
+  unitId          String
+  unit            Unit      @relation(fields: [unitId], references: [id], onDelete: Restrict)
+  tenantId        String
+  tenant          Tenant    @relation(fields: [tenantId], references: [id], onDelete: Restrict)
+  startDate       DateTime
+  endDate         DateTime
+  annualRent      Float
+  installments    Int       @default(1) // عدد الدفعات في السنة
+  deposit         Float     @default(0)
+  vatRate         Float     @default(0) // السكني معفى، التجاري 15%
+  ejarNumber      String?
+  autoRenew       Boolean   @default(false)
+  status          String    @default("ACTIVE") // DRAFT | ACTIVE | EXPIRED | TERMINATED
+  terminationDate DateTime?
+  notes           String?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  invoices Invoice[]
+
+  @@index([unitId])
+  @@index([tenantId])
+  @@index([status])
+  @@index([endDate])
+}
+
+// ═══════════════ المالية والتحصيل ═══════════════
+
+model Invoice {
+  id        String   @id @default(cuid())
+  number    String   @unique
+  leaseId   String
+  lease     Lease    @relation(fields: [leaseId], references: [id], onDelete: Cascade)
+  issueDate DateTime
+  dueDate   DateTime
+  amount    Float // المبلغ قبل الضريبة
+  vatAmount Float    @default(0)
+  total     Float
+  paidTotal Float    @default(0)
+  status    String   @default("UNPAID") // UNPAID | PARTIAL | PAID | CANCELLED
+  period    String? // وصف الفترة مثل "الدفعة 1 من 4"
+  notes     String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  payments Payment[]
+
+  @@index([leaseId])
+  @@index([status])
+  @@index([dueDate])
+}
+
+model Payment {
+  id        String   @id @default(cuid())
+  number    String   @unique
+  invoiceId String
+  invoice   Invoice  @relation(fields: [invoiceId], references: [id], onDelete: Cascade)
+  paidAt    DateTime
+  amount    Float
+  method    String // BANK_TRANSFER | CHEQUE | CASH | SADAD | MADA
+  reference String?
+  bankName  String?
+  notes     String?
+  createdAt DateTime @default(now())
+
+  @@index([invoiceId])
+  @@index([paidAt])
+}
+
+model Expense {
+  id          String   @id @default(cuid())
+  number      String   @unique
+  propertyId  String
+  property    Property @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+  unitId      String?
+  unit        Unit?    @relation(fields: [unitId], references: [id], onDelete: SetNull)
+  category    String // MAINTENANCE | UTILITIES | SECURITY | CLEANING | GOVERNMENT | INSURANCE | MARKETING | OTHER
+  spentAt     DateTime
+  amount      Float
+  vatAmount   Float    @default(0)
+  vendor      String?
+  chargeTo    String   @default("OWNER") // OWNER | COMPANY
+  description String
+  status      String   @default("APPROVED") // PENDING | APPROVED | REJECTED
+  attachment  String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([propertyId])
+  @@index([spentAt])
+  @@index([chargeTo])
+}
+
+// توريد صافي الإيراد للمالك
+model Payout {
+  id         String    @id @default(cuid())
+  number     String    @unique
+  ownerId    String
+  owner      Owner     @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+  periodFrom DateTime
+  periodTo   DateTime
+  collected  Float // إجمالي المحصّل
+  expenses   Float // إجمالي المصروفات على المالك
+  commission Float // عمولة الإدارة
+  netAmount  Float // الصافي المورّد
+  paidAt     DateTime?
+  reference  String?
+  status     String    @default("DRAFT") // DRAFT | APPROVED | PAID
+  notes      String?
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+
+  @@index([ownerId])
+  @@index([status])
+}
+
+// ═══════════════ الوثائق والتنبيهات ═══════════════
+
+model Document {
+  id         String    @id @default(cuid())
+  title      String
+  type       String // DEED | LICENSE | INSURANCE | CONTRACT | CERTIFICATE | OTHER
+  entityType String // PROPERTY | OWNER | LEASE | UNIT | COMPANY
+  entityId   String?
+  propertyId String?
+  property   Property? @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+  number     String?
+  issueDate  DateTime?
+  expiryDate DateTime?
+  fileUrl    String?
+  notes      String?
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+
+  @@index([expiryDate])
+  @@index([entityType, entityId])
+}
