@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>المقصد — فيديو تعريفي</title>
+<style>
+@font-face { font-family: "ReemKufi"; src: url(data:font/woff2;base64,__REEM__) format("woff2"); font-weight: 400 700; font-display: block; }
+@font-face { font-family: "CairoAR"; src: url(data:font/woff2;base64,__CAIRO__) format("woff2"); font-weight: 200 900; font-display: block; }
+
+:root{
+  --gold:#D9A151; --gold-l:#E8C288; --ink:#33302D; --ink-2:#413D39;
+  --cream:#FFFBF8; --slate:#1E3A47; --slate-2:#2A5163; --mute:#A99E93;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1920px;height:1080px;overflow:hidden;background:var(--ink)}
+body{font-family:"CairoAR",sans-serif;color:var(--cream)}
+
+#stage{position:relative;width:1920px;height:1080px;overflow:hidden;background:var(--ink)}
+
+/* ── خلفية النقشة ── */
+.weave{position:absolute;inset:0;opacity:.085;background-size:140px 140px}
+.vig{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 45%, transparent 25%, rgba(0,0,0,.55) 100%)}
+
+/* ── المشاهد ── */
+.scene{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  opacity:0;pointer-events:none;will-change:opacity,transform}
+.scene.in{opacity:1}
+.scene{transition:opacity .55s ease}
+
+.wrap{width:1500px;text-align:center}
+
+.kufi{font-family:"ReemKufi",sans-serif;font-weight:600}
+.big{font-size:112px;line-height:1.25;letter-spacing:-.01em}
+.mid{font-size:70px;line-height:1.35}
+.sm{font-size:43px;line-height:1.6;color:#D9CFC4}
+.xs{font-size:29px;letter-spacing:.24em;color:var(--gold)}
+.gold{color:var(--gold)}
+
+/* حركة الصعود */
+.up{opacity:0;transform:translateY(46px);transition:opacity .7s cubic-bezier(.2,.7,.3,1),transform .7s cubic-bezier(.2,.7,.3,1)}
+.in .up{opacity:1;transform:none}
+.in .up.d1{transition-delay:.18s} .in .up.d2{transition-delay:.36s}
+.in .up.d3{transition-delay:.54s} .in .up.d4{transition-delay:.72s}
+.in .up.d5{transition-delay:.9s}  .in .up.d6{transition-delay:1.08s}
+
+/* خط ذهبي يتمدد */
+.rule{height:3px;background:var(--gold);width:0;margin:34px auto;transition:width .9s cubic-bezier(.2,.7,.3,1) .3s}
+.in .rule{width:190px}
+
+/* ── الشعار ── */
+.markwrap{display:flex;flex-direction:column;align-items:center;gap:26px}
+.mark{width:132px;height:132px}
+.mark rect{fill:var(--gold);opacity:0;transform-origin:center;transform:scale(.4)}
+.in .mark rect{animation:pop .5s cubic-bezier(.3,1.5,.5,1) forwards}
+.in .mark rect:nth-child(1){animation-delay:.05s} .in .mark rect:nth-child(2){animation-delay:.14s}
+.in .mark rect:nth-child(3){animation-delay:.23s} .in .mark rect:nth-child(4){animation-delay:.32s}
+.in .mark rect:nth-child(5){animation-delay:.44s}
+@keyframes pop{to{opacity:1;transform:scale(1)}}
+
+/* ── الأرقام ── */
+.stats{display:flex;justify-content:center;gap:96px;margin-top:24px}
+.stat{min-width:330px}
+.stat .n{font-family:"ReemKufi",sans-serif;font-weight:700;font-size:126px;color:var(--gold);line-height:1.1;
+  font-variant-numeric:tabular-nums;direction:ltr}
+.stat .unit{font-family:"ReemKufi",sans-serif;font-size:42px;color:var(--gold-l);margin-top:2px}
+.stat .l{font-size:31px;color:#CFC5BA;margin-top:10px}
+
+/* ── البطاقات ── */
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:44px}
+.card{background:rgba(255,251,248,.055);border:1px solid rgba(217,161,81,.3);border-radius:8px;
+  padding:34px 26px;text-align:center;opacity:0;transform:translateY(34px);
+  transition:opacity .5s ease,transform .5s cubic-bezier(.2,.7,.3,1)}
+.in .card{opacity:1;transform:none}
+.in .card:nth-child(1){transition-delay:.20s} .in .card:nth-child(2){transition-delay:.34s}
+.in .card:nth-child(3){transition-delay:.48s} .in .card:nth-child(4){transition-delay:.62s}
+.in .card:nth-child(5){transition-delay:.76s} .in .card:nth-child(6){transition-delay:.90s}
+.card .ic{height:52px;margin-bottom:18px;display:flex;justify-content:center}
+.card .ic svg{height:52px;width:52px}
+.card .t{font-family:"ReemKufi",sans-serif;font-size:35px;font-weight:600}
+.card .s{font-size:25px;color:#BDB2A7;margin-top:8px;line-height:1.5}
+
+/* ── الفرق ── */
+.teams{display:flex;justify-content:center;gap:22px;margin-top:48px}
+.team{flex:1;max-width:330px;background:rgba(30,58,71,.55);border-top:4px solid var(--gold);
+  border-radius:6px;padding:38px 20px;opacity:0;transform:translateY(30px) scale(.96);
+  transition:opacity .5s ease,transform .55s cubic-bezier(.2,.7,.3,1)}
+.in .team{opacity:1;transform:none}
+.in .team:nth-child(1){transition-delay:.2s} .in .team:nth-child(2){transition-delay:.36s}
+.in .team:nth-child(3){transition-delay:.52s} .in .team:nth-child(4){transition-delay:.68s}
+.team .t{font-family:"ReemKufi",sans-serif;font-size:40px;font-weight:600}
+.team .s{font-size:24px;color:#B9AEA3;margin-top:8px}
+
+/* ── لوحة التقارير ── */
+.dash{margin-top:44px;background:rgba(255,251,248,.05);border:1px solid rgba(217,161,81,.25);
+  border-radius:10px;padding:34px 40px}
+.dashrow{display:flex;gap:34px;justify-content:space-between}
+.dcell{flex:1;text-align:right}
+.dcell .k{font-size:24px;color:#A99E93}
+.dcell .v{font-family:"ReemKufi",sans-serif;font-size:58px;color:var(--gold);font-variant-numeric:tabular-nums;direction:ltr;text-align:right}
+.track{height:9px;background:rgba(255,255,255,.09);border-radius:5px;margin-top:16px;overflow:hidden}
+.track > i{display:block;height:100%;background:var(--gold);width:0;border-radius:5px;
+  transition:width 1.5s cubic-bezier(.2,.7,.3,1) .5s}
+.in .track > i.w1{width:87%} .in .track > i.w2{width:94%} .in .track > i.w3{width:71%}
+
+/* ── الختام ── */
+.cta{font-family:"ReemKufi",sans-serif;font-size:40px;color:var(--cream);letter-spacing:.06em;
+  border:2px solid var(--gold);border-radius:6px;padding:20px 54px;display:inline-block;margin-top:14px}
+.contact{display:flex;gap:56px;justify-content:center;margin-top:40px;font-size:31px;color:#CFC5BA;direction:ltr}
+
+/* ── شريط التقدم ── */
+#bar{position:absolute;bottom:0;right:0;height:5px;background:var(--gold);width:0}
+</style>
+</head>
+<body>
+<div id="stage">
+  <div class="weave" id="weave"></div>
+  <div class="vig"></div>
+
+  <!-- 1 · الافتتاحية -->
+  <section class="scene" data-t="0">
+    <div class="wrap markwrap">
+      <svg class="mark" viewBox="0 0 20 20"><rect x="0" y="0" width="6" height="6"/><rect x="14" y="0" width="6" height="6"/><rect x="0" y="14" width="6" height="6"/><rect x="14" y="14" width="6" height="6"/><rect x="8" y="8" width="4" height="4"/></svg>
+      <div class="big kufi up d3">عقارك مو مجرد مبنى</div>
+      <div class="mid kufi gold up d4">عقارك أصل يبي له تشغيل صح</div>
+    </div>
+  </section>
+
+  <!-- 2 · الهوية -->
+  <section class="scene" data-t="5.4">
+    <div class="wrap">
+      <div class="xs up">AL-MAQSD</div>
+      <div class="big kufi up d1" style="margin-top:18px">شركة المقصد</div>
+      <div class="mid kufi gold up d2">لإدارة الأملاك والتسويق العقاري</div>
+      <div class="rule"></div>
+      <div class="sm up d4">من الرياض · أكثر من ١٠ سنوات في إدارة وتشغيل الأصول العقارية</div>
+    </div>
+  </section>
+
+  <!-- 3 · الأرقام -->
+  <section class="scene" data-t="12.2">
+    <div class="wrap">
+      <div class="mid kufi up">أرقام تتكلم عنّا</div>
+      <div class="stats">
+        <div class="stat up d2">
+          <div class="n" data-count="600">0</div>
+          <div class="unit">مليون ريال</div>
+          <div class="l">أصول عقارية تحت الإدارة</div>
+        </div>
+        <div class="stat up d3">
+          <div class="n" data-count="400" data-prefix="+">0</div>
+          <div class="unit">وحدة عقارية</div>
+          <div class="l">مُدارة ومشغّلة</div>
+        </div>
+      </div>
+      <div class="sm up d5" style="margin-top:46px">مجمعات تجارية · مبانٍ مكتبية · مجمعات سكنية</div>
+    </div>
+  </section>
+
+  <!-- 4 · الخدمات -->
+  <section class="scene" data-t="22.4">
+    <div class="wrap">
+      <div class="mid kufi up">كل شي تحت سقف واحد</div>
+      <div class="cards">
+        <div class="card"><div class="ic"><svg viewBox="0 0 24 24" width="52" height="52" fill="none" stroke="#D9A151" stroke-width="1.7"><path d="M3 11 L12 3 L21 11"/><path d="M5.5 9.5 V21 H18.5 V9.5"/><rect x="10" y="14" width="4" height="7"/></svg></div><div class="t">التشغيل والتأجير</div><div class="s">رفع الإشغال بأقل تكلفة تشغيلية</div></div>
+        <div class="card"><div class="ic"><svg viewBox="0 0 24 24" width="52" height="52" fill="none" stroke="#D9A151" stroke-width="1.7"><circle cx="12" cy="12" r="3.4"/><path d="M12 2.2v3M12 18.8v3M2.2 12h3M18.8 12h3M5 5l2.1 2.1M16.9 16.9L19 19M19 5l-2.1 2.1M7.1 16.9L5 19"/></svg></div><div class="t">الصيانة والمرافق</div><div class="s">وقائية وتصحيحية بجدولة دورية</div></div>
+        <div class="card"><div class="ic"><svg viewBox="0 0 24 24" width="52" height="52" fill="none" stroke="#D9A151" stroke-width="1.7"><rect x="2.5" y="6" width="19" height="12" rx="1.6"/><circle cx="12" cy="12" r="2.8"/><path d="M6 9.5v5M18 9.5v5"/></svg></div><div class="t">التحصيل والمالية</div><div class="s">تقارير إيرادات ومصروفات دقيقة</div></div>
+        <div class="card"><div class="ic"><svg viewBox="0 0 24 24" width="52" height="52" fill="none" stroke="#D9A151" stroke-width="1.7"><path d="M3.5 9.5v5h3l6 4V5.5l-6 4z"/><path d="M17 8.6a5 5 0 0 1 0 6.8"/><path d="M19.6 6a8.6 8.6 0 0 1 0 12"/></svg></div><div class="t">التسويق واستقطاب المستأجرين</div><div class="s">حملات رقمية وتقليدية</div></div>
+        <div class="card"><div class="ic"><svg viewBox="0 0 24 24" width="52" height="52" fill="none" stroke="#D9A151" stroke-width="1.7"><path d="M3 20.5h18"/><rect x="4.5" y="12" width="3.6" height="7"/><rect x="10.2" y="7.5" width="3.6" height="11.5"/><rect x="15.9" y="4" width="3.6" height="15"/></svg></div><div class="t">التقييم والاستشارات</div><div class="s">دراسات جدوى وقياس العوائد</div></div>
+        <div class="card"><div class="ic"><svg viewBox="0 0 24 24" width="52" height="52" fill="none" stroke="#D9A151" stroke-width="1.7"><rect x="2.5" y="3.5" width="19" height="13" rx="1.6"/><path d="M8 20.5h8M12 16.5v4"/><path d="M6.5 12.5l3-3 2.6 2.6 4.4-4.6"/></svg></div><div class="t">الحلول التقنية</div><div class="s">متابعة أداء عقارك لحظة بلحظة</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 · الفرق -->
+  <section class="scene" data-t="34.2">
+    <div class="wrap">
+      <div class="mid kufi up">وراك فريق كامل… كلٍ في تخصصه</div>
+      <div class="teams">
+        <div class="team"><div class="t">الإداري</div><div class="s">تخطيط وتنفيذ وكفاءة تشغيل</div></div>
+        <div class="team"><div class="t">القانوني</div><div class="s">عقود وامتثال وحماية حقوق</div></div>
+        <div class="team"><div class="t">الصيانة والتشغيل</div><div class="s">استدامة الأصول ورفع كفاءتها</div></div>
+        <div class="team"><div class="t">المالي</div><div class="s">حسابات وتقارير وتحليل أداء</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6 · التقارير اللحظية -->
+  <section class="scene" data-t="44.0">
+    <div class="wrap">
+      <div class="mid kufi up">تتابع عقارك… لحظة بلحظة</div>
+      <div class="sm up d1" style="margin-top:14px">تقارير فورية وأرقام واضحة — وقرار تاخذه وانت مرتاح</div>
+      <div class="dash up d2">
+        <div class="dashrow">
+          <div class="dcell"><div class="k">نسبة الإشغال</div><div class="v">87%</div><div class="track"><i class="w1"></i></div></div>
+          <div class="dcell"><div class="k">نسبة التحصيل</div><div class="v">94%</div><div class="track"><i class="w2"></i></div></div>
+          <div class="dcell"><div class="k">رضا المستأجرين</div><div class="v">71%</div><div class="track"><i class="w3"></i></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7 · الختام -->
+  <section class="scene" data-t="52.6">
+    <div class="wrap markwrap">
+      <svg class="mark" viewBox="0 0 20 20"><rect x="0" y="0" width="6" height="6"/><rect x="14" y="0" width="6" height="6"/><rect x="0" y="14" width="6" height="6"/><rect x="14" y="14" width="6" height="6"/><rect x="8" y="8" width="4" height="4"/></svg>
+      <div class="big kufi up d3" style="margin-top:6px">المقصد</div>
+      <div class="mid kufi gold up d4">خلّ عقارك عند ناس تعرف قيمته</div>
+      <div class="up d5"><div class="cta">احصل على عرض أسعار مجاني</div></div>
+      <div class="contact up d6"><span>almaqsd.co</span><span>·</span><span>0582002000</span><span>·</span><span>info@almaqsd.co</span></div>
+    </div>
+  </section>
+
+  <div id="bar"></div>
+</div>
+
+<script>
+// نقشة الخلفية المستوحاة من هوية المقصد
+const tile = `<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140' viewBox='0 0 140 140'><g fill='none' stroke='%23D9A151' stroke-width='7' stroke-linecap='square'><path d='M22 24 L50 52 L22 80'/><path d='M118 60 L90 88 L118 116'/></g><g fill='%23D9A151'><rect x='63' y='16' width='16' height='16' transform='rotate(45 71 24)'/><rect x='63' y='108' width='16' height='16' transform='rotate(45 71 116)'/></g></svg>`;
+document.getElementById("weave").style.backgroundImage =
+  'url("data:image/svg+xml;utf8,' + tile.replace(/\n/g, "") + '")';
+
+const DURATION = 58.5;
+const scenes = [...document.querySelectorAll(".scene")];
+const bar = document.getElementById("bar");
+
+function countUp(el) {
+  const target = +el.dataset.count;
+  const prefix = el.dataset.prefix || "";
+  const suffix = el.dataset.suffix || "";
+  const dur = 1500;
+  const t0 = performance.now();
+  function step(now) {
+    const p = Math.min(1, (now - t0) / dur);
+    const eased = 1 - Math.pow(1 - p, 3);
+    el.innerHTML = prefix + Math.round(target * eased).toLocaleString("en-US") + suffix;
+    if (p < 1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+
+window.PLAY = function () {
+  const t0 = performance.now();
+  scenes.forEach((s, i) => {
+    const at = parseFloat(s.dataset.t) * 1000;
+    const next = scenes[i + 1] ? parseFloat(scenes[i + 1].dataset.t) * 1000 : DURATION * 1000;
+    setTimeout(() => {
+      s.classList.add("in");
+      s.querySelectorAll("[data-count]").forEach(countUp);
+    }, at);
+    setTimeout(() => s.classList.remove("in"), next - 450);
+  });
+  (function tick(now) {
+    const p = Math.min(1, ((now || performance.now()) - t0) / (DURATION * 1000));
+    bar.style.width = (p * 100) + "%";
+    if (p < 1) requestAnimationFrame(tick);
+    else window.DONE = true;
+  })();
+};
+window.READY = true;
+</script>
+</body>
+</html>
